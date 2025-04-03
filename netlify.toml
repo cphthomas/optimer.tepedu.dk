@@ -7,4 +7,7 @@
   NPM_VERSION = "7.24.2"
   NODE_OPTIONS = "--openssl-legacy-provider"
   CI = "false"
-  NPM_FLAGS = "--legacy-peer-deps" 
+  NPM_FLAGS = "--legacy-peer-deps"
+
+[build.processing]
+  skip_processing = true 
