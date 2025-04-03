@@ -1,0 +1,38 @@
+{
+  "name": "react-bootstrap",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "chartjs-plugin-annotation": "^0.5.7",
+    "highcharts": "^8.1.2",
+    "highcharts-react-official": "^3.0.0",
+    "javascript-lp-solver": "^0.4.24",
+    "katex": "^0.12.0",
+    "mdbreact": "^4.27.0",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "styled-components": "^4.2.0"
+  },
+  "scripts": {
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "node": "^8.15.0"
+  }
+}
