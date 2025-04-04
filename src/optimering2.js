@@ -28,7 +28,8 @@ require('highcharts/modules/annotations')(Highcharts);
 require('highcharts/highcharts-more')(Highcharts);
 
 export function optimering2() {
-  var [a, seta] = useState(+(-1).toFixed(2)); //?
+  var [a, seta] = useState(-1);
+  var [aInput, setaInput] = useState("-1");
   var [aop, setaop] = useState(+(-0.5).toFixed(2));
   var [bop, setbop] = useState(+(100).toFixed(2));
   var [aned, setaned] = useState(+(-1).toFixed(2));
@@ -56,11 +57,14 @@ export function optimering2() {
     };
 
     if (showAlert) {
+      // Use both mousedown and touchstart events for better cross-platform support
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('touchstart', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [showAlert]);
 
@@ -1645,19 +1649,31 @@ export function optimering2() {
                                       step={0.01}
                                       precision={0}
                                       mobile={true}
-                                      value={a}
+                                      value={aInput}
                                       onChange={(e) => {
                                         const value = e.target.value;
+                                        setaInput(value);
+                                        
                                         if (value === '') {
-                                          seta('');
+                                          seta(0); // Set to 0 for perfect competition market
                                         } else {
+                                          // Use the raw string value for parsing to handle decimal points correctly
                                           const numValue = parseFloat(value);
-                                          if (numValue > 0) {
-                                            setShowAlert(true);
-                                            seta('');
-                                          } else {
-                                            seta(numValue);
+                                          if (!isNaN(numValue)) {
+                                            if (numValue > 0) {
+                                              setShowAlert(true);
+                                              seta(0); // Set to 0 for perfect competition market
+                                            } else {
+                                              seta(numValue);
+                                            }
                                           }
+                                        }
+                                      }}
+                                      onBlur={(e) => {
+                                        // Ensure the value is properly formatted on blur
+                                        if (aInput === '') {
+                                          setaInput('0');
+                                          seta(0);
                                         }
                                       }}
                                       placeholder="0"
@@ -1676,8 +1692,11 @@ export function optimering2() {
                                         backgroundColor: 'rgba(220, 53, 69, 0.2)',
                                         border: '1px solid rgba(220, 53, 69, 0.3)',
                                         color: '#721c24',
-                                        marginTop: '5px'
+                                        marginTop: '5px',
+                                        position: 'relative',
+                                        zIndex: 1000
                                       }}
+                                      onClick={(e) => e.stopPropagation()}
                                     >
                                       Pas på hældningskoefficienten for P er aldrig positiv
                                     </Alert>
