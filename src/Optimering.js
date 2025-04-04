@@ -37,7 +37,7 @@ export function Optimering() {
 
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (alertRef.current && !alertRef.current.contains(event.target)) {
+      if (alertRef.current && alertRef.current.contains && !alertRef.current.contains(event.target)) {
         setShowAlert(false);
       }
     };
@@ -208,7 +208,10 @@ export function Optimering() {
                           }}
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <div 
+                            ref={alertRef}
+                            style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                          >
                             <span>Pas på hældningskoefficienten for P er aldrig positiv</span>
                             <button 
                               onClick={() => setShowAlert(false)}
