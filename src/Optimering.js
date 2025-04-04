@@ -208,7 +208,22 @@ export function Optimering() {
                           }}
                           onClick={(e) => e.stopPropagation()}
                         >
-                          Pas på hældningskoefficienten for P er aldrig positiv
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span>Pas på hældningskoefficienten for P er aldrig positiv</span>
+                            <button 
+                              onClick={() => setShowAlert(false)}
+                              style={{ 
+                                background: 'none', 
+                                border: 'none', 
+                                color: '#721c24', 
+                                fontSize: '1.2rem',
+                                cursor: 'pointer',
+                                padding: '0 0 0 10px'
+                              }}
+                            >
+                              ×
+                            </button>
+                          </div>
                         </Alert>
                       )}
                     </Col>
